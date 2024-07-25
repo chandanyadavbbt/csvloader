@@ -1,0 +1,98 @@
+/* Structure.css */
+
+.container {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 20px;
+    gap: 16px;
+    
+  }
+  
+  .modern-table {
+    width: 50%;
+    border-collapse: collapse;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    margin-left: 2%; /* This centers the table horizontally */
+    
+  }
+  
+  .modern-table th,
+  .modern-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .modern-table th {
+    background-color: #f4f4f4;
+  }
+  
+  .modern-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .modern-table tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+  .container-right{
+    width: 44%;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    position:fixed;
+    right: 10px;
+    overflow-y: auto;
+  
+  }
+  .post-button{
+    background-color: #F4F4F4;
+    width: 90%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    padding: 4px;
+    font-size: 24px;
+    border-radius: 12px;
+    font-weight: 600;
+  }
+  /* Structure.css or another CSS file */
+
+.modern-button {
+  display: inline-block;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  background-color: #007bff; /* Primary color */
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  margin: 12px;
+}
+
+.modern-button:hover {
+  background-color: #0056b3; /* Darker shade for hover effect */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.modern-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+}
+
+.modern-button:active {
+  background-color: #004085; /* Even darker shade for active state */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+.response-text{
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: .7px;
+  background-color: #F4F4F4;
+  border: 1px dashed #6EACDA;
+}
+
+  
