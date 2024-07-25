@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { Rings } from 'react-loader-spinner'; // Importing the loader component
 import '.././utils/Structure.css';
 
 function Companies() {
   const [companies, setCompanies] = useState([]);
   const [messages, setMessages] = useState([]);
-  const [displayMessage, setDisplayMessage] = useState('Click "Send Query" for a response.'); // Initial message
+  const [loading, setLoading] = useState(false);
+  const [initialText, setInitialText] = useState(true); // State for initial text
   const postText = "Explain in detail about company financial data";
 
   useEffect(() => {
@@ -15,7 +17,8 @@ function Companies() {
   }, []);
 
   const handleSendMessage = async () => {
-    setDisplayMessage("Awating Response...")
+    setInitialText(false);
+    setLoading(true);
     const message = postText;
     try {
       const response = await fetch('http://127.0.0.1:8000/v1/chat/completions', {
@@ -34,6 +37,7 @@ function Companies() {
 
       if (!response.ok) {
         console.error('Error:', response.statusText);
+        setLoading(false);
         return;
       }
 
@@ -41,9 +45,10 @@ function Companies() {
       const assistantMessage = data.choices[0]?.message?.content || "No response from API";
 
       setMessages([...messages, { role: 'user', content: message }, { role: 'assistant', content: assistantMessage }]);
-      console.log(assistantMessage);
+      setLoading(false);
     } catch (error) {
       console.error('Error sending message:', error);
+      setLoading(false);
     }
   };
 
@@ -87,12 +92,16 @@ function Companies() {
           <button className='modern-button' onClick={handleSendMessage}>Send Query</button>
         </div>
         <div className='response-text'>
-          {messages.length > 0 ? (
+          {initialText ? (
+            <p>Click "Send Query" for a response.</p>
+          ) : loading ? (
+            <div className="loader-container">
+              <Rings height="80" width="80" color="blue" ariaLabel="loading" />
+            </div>
+          ) : (
             messages.map((msg, index) => (
               <p key={index} className={msg.role}>{msg.content.split('JSONdata')[0].trim()}</p>
             ))
-          ) : (
-            <p>{displayMessage}</p>
           )}
         </div>
       </div>
