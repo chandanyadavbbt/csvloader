@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Rings } from 'react-loader-spinner'; // Importing the loader component
 import '.././utils/Structure.css';
+import LoadingPage from '../utils/LoadingPage';
 
 function Companies() {
   const [companies, setCompanies] = useState([]);
@@ -13,6 +14,9 @@ function Companies() {
     fetch('http://localhost:4000/company')
       .then((response) => response.json())
       .then((data) => setCompanies(data))
+      
+        handleSendMessage()
+     
       .catch((error) => console.error('Error fetching data:', error));
   }, []);
 
@@ -37,7 +41,7 @@ function Companies() {
 
       if (!response.ok) {
         console.error('Error:', response.statusText);
-        setLoading(false);
+        // setLoading(false);
         return;
       }
 
@@ -95,9 +99,7 @@ function Companies() {
           {initialText ? (
             <p>Click "Send Query" for a response.</p>
           ) : loading ? (
-            <div className="loader-container">
-              <Rings height="80" width="80" color="blue" ariaLabel="loading" />
-            </div>
+           <LoadingPage/>
           ) : (
             messages.map((msg, index) => (
               <p key={index} className={msg.role}>{msg.content.split('JSONdata')[0].trim()}</p>

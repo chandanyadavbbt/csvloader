@@ -5,26 +5,27 @@ import LoadingPage from './LoadingPage';
 function Structure() {
   const [countries, setCountries] = useState([]);
   const [messages, setMessages] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [initialText, setInitialText] = useState(true);
   const postText = "Please summarize the countries data.";
 
   useEffect(() => {
-    setLoading(true);
+    // setLoading(true);
     fetch('http://localhost:4000/countries')
       .then((response) => response.json())
       .then((data) => {
         setCountries(data);
+       
         setTimeout(()=>{
           handleSendMessage()
         },3000)
-        setLoading(false);
+        
       })
       .catch((error) => {
         console.error('Error fetching data:', error);
         setLoading(false);
       });
-  }, []);
+    }, []);
 
   const handleSendMessage = async () => {
     setInitialText(false);
