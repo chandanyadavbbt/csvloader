@@ -107,16 +107,18 @@ function Structure() {
             </div>
 
             <div className='response-text'>
-              {loading ? (
-                <LoadingPage />
-              ) : initialText ? (
-                <p>Country CSV Data</p>
-              ) : (
-                messages.map((msg, index) => (
-                  <p key={index} className={msg.role} dangerouslySetInnerHTML={{ __html: msg.content.split('JSONdata')[0].trim() }}></p>
-                ))
-              )}
-            </div>
+  {loading ? (
+    <LoadingPage />
+  ) : initialText ? (
+    <p>Country CSV Data</p>
+  ) : (
+    messages
+      .filter(msg => msg.role === 'assistant') // Filter to include only assistant messages
+      .map((msg, index) => (
+        <p key={index} className={msg.role} dangerouslySetInnerHTML={{ __html: msg.content.split('JSONdata')[0].trim() }}></p>
+      ))
+  )}
+</div>
           </div>
         </div>
       

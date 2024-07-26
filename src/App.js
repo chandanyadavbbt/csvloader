@@ -7,7 +7,7 @@ import Companies from './pages/Companies'
 function App() {
   return (
     <Routes>
-      <Route path="/countries" element={<Countries/>}/>
+      <Route path="/" element={<Countries/>}/>
       <Route path="/companies" element={<Companies/>}/>
     </Routes>
   
