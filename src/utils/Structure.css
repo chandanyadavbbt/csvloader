@@ -88,11 +88,14 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 .response-text{
-  font-size: 18px;
+  font-size: 24px;
   font-weight: 400;
   letter-spacing: .7px;
   background-color: #F4F4F4;
   border: 1px dashed #6EACDA;
+}
+.response-text p{
+  font-size: 24px;
 }
 
   

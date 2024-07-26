@@ -1,19 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import './Structure.css';
-import { Rings } from 'react-loader-spinner'; // Assuming you are using 'react-loader-spinner' for the loader
+import LoadingPage from './LoadingPage';
 
 function Structure() {
   const [countries, setCountries] = useState([]);
   const [messages, setMessages] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [initialText, setInitialText] = useState(true); // State for initial text
-  const postText = "Explain in detail about countries data";
+  const [loading, setLoading] = useState(true);
+  const [initialText, setInitialText] = useState(true);
+  const postText = "Please summarize the countries data.";
 
   useEffect(() => {
+    setLoading(true);
     fetch('http://localhost:4000/countries')
       .then((response) => response.json())
-      .then((data) => setCountries(data))
-      .catch((error) => console.error('Error fetching data:', error));
+      .then((data) => {
+        setCountries(data);
+        setTimeout(()=>{
+          handleSendMessage()
+        },3000)
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+        setLoading(false);
+      });
   }, []);
 
   const handleSendMessage = async () => {
@@ -44,7 +54,10 @@ function Structure() {
       const data = await response.json();
       const assistantMessage = data.choices[0]?.message?.content || "No response from API";
 
-      setMessages([...messages, { role: 'user', content: message }, { role: 'assistant', content: assistantMessage }]);
+      // Refined regular expression to avoid breaking on "out of 10." or similar cases
+      const formattedMessage = assistantMessage.replace(/(\d+\.\s)(?=[A-Z])/g, '<br />$1').trim();
+
+      setMessages([...messages, { role: 'user', content: message }, { role: 'assistant', content: formattedMessage }]);
       setLoading(false);
     } catch (error) {
       console.error('Error sending message:', error);
@@ -53,57 +66,60 @@ function Structure() {
   };
 
   return (
-    <div className="container">
-      <table className="modern-table">
-        <thead>
-          <tr>
-            <th>Overall Rank</th>
-            <th>Country or Region</th>
-            <th>Score</th>
-            <th>GDP per Capita</th>
-            <th>Social Support</th>
-            <th>Healthy Life Expectancy</th>
-            <th>Freedom to Make Life Choices</th>
-            <th>Generosity</th>
-            <th>Perceptions of Corruption</th>
-          </tr>
-        </thead>
-        <tbody>
-          {countries.map((country, index) => (
-            <tr key={index}>
-              <td>{country.overall_rank}</td>
-              <td>{country.country_or_region}</td>
-              <td>{country.score}</td>
-              <td>{country.GDP_per_capita}</td>
-              <td>{country.Social_support}</td>
-              <td>{country.Healthy_life_expectancy}</td>
-              <td>{country.Freedom_to_make_life_choices}</td>
-              <td>{country.Generosity}</td>
-              <td>{country.Perceptions_of_corruption}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <div className="container-right">
-        <div className="post-button">
-          <p>{postText}</p>
-          <button className='modern-button' onClick={handleSendMessage}>Send Query</button>
-        </div>
-        <div className='response-text'>
-          {initialText ? (
-            <p>Click "Send Query" for a response.</p>
-          ) : loading ? (
-            <div className="loader-container">
-              <Rings height="80" width="80" color="blue" ariaLabel="loading" />
+    <>
+      {loading ? (
+        <LoadingPage />
+      ) : (
+        <div className="container">
+          <table className="modern-table">
+            <thead>
+              <tr>
+                <th>Overall Rank</th>
+                <th>Country or Region</th>
+                <th>Score</th>
+                <th>GDP per Capita</th>
+                <th>Social Support</th>
+                <th>Healthy Life Expectancy</th>
+                <th>Freedom to Make Life Choices</th>
+                <th>Generosity</th>
+                <th>Perceptions of Corruption</th>
+              </tr>
+            </thead>
+            <tbody>
+              {countries.map((country, index) => (
+                <tr key={index}>
+                  <td>{country.overall_rank}</td>
+                  <td>{country.country_or_region}</td>
+                  <td>{country.score}</td>
+                  <td>{country.GDP_per_capita}</td>
+                  <td>{country.Social_support}</td>
+                  <td>{country.Healthy_life_expectancy}</td>
+                  <td>{country.Freedom_to_make_life_choices}</td>
+                  <td>{country.Generosity}</td>
+                  <td>{country.Perceptions_of_corruption}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <div className="container-right">
+            <div className="post-button">
+              <h3>{postText}</h3>
+              {/* <button className='modern-button' onClick={handleSendMessage}>Send Query</button> */}
             </div>
-          ) : (
-            messages.map((msg, index) => (
-              <p key={index} className={msg.role}>{msg.content.split('JSONdata')[0].trim()}</p>
-            ))
-          )}
+
+            <div className='response-text'>
+              {initialText ? (
+                <p>Country CSV Data</p>
+              ) : (
+                messages.map((msg, index) => (
+                  <p key={index} className={msg.role} dangerouslySetInnerHTML={{ __html: msg.content.split('JSONdata')[0].trim() }}></p>
+                ))
+              )}
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 }
 
