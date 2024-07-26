@@ -5,7 +5,7 @@ function LoadingPage() {
   return (
     <div className="loading-container">
       <div className="spinner"></div>
-      <p>Summarising </p>
+      <p className='spinner-text'>Summarising </p>
     </div>
   );
 }

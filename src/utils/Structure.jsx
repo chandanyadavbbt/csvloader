@@ -67,9 +67,7 @@ function Structure() {
 
   return (
     <>
-      {loading ? (
-        <LoadingPage />
-      ) : (
+     
         <div className="container">
           <table className="modern-table">
             <thead>
@@ -104,11 +102,13 @@ function Structure() {
           <div className="container-right">
             <div className="post-button">
               <h3>{postText}</h3>
-              {/* <button className='modern-button' onClick={handleSendMessage}>Send Query</button> */}
+            
             </div>
 
             <div className='response-text'>
-              {initialText ? (
+              {loading ? (
+                <LoadingPage />
+              ) : initialText ? (
                 <p>Country CSV Data</p>
               ) : (
                 messages.map((msg, index) => (
@@ -118,7 +118,7 @@ function Structure() {
             </div>
           </div>
         </div>
-      )}
+      
     </>
   );
 }

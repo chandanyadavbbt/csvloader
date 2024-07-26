@@ -5,8 +5,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
-    background-color: #f9f9f9; /* Light background color */
+    height: 80vh;
+    /* width: 80vw; */
+    background-color: #dee6fd; /* Light background color */
 
     
   }
@@ -19,7 +20,7 @@
     height: 60px;
     animation: spin 1.5s linear infinite;
   }
-  .loading-container .spinner p{
+  .spinner-text{
     font-size: 28px;
     font-weight: 600;
     letter-spacing: .7px;
