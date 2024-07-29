@@ -10,6 +10,7 @@ function Structure() {
   const postText = "Please summarize the countries data.";
 
   useEffect(() => {
+    console.log("test fetch")
     // setLoading(true);
     fetch('http://localhost:4000/countries')
       .then((response) => response.json())
@@ -103,10 +104,7 @@ function Structure() {
             </tbody>
           </table>
           <div className="container-right">
-            <div className="post-button">
-              <h3>{postText}</h3>
-            
-            </div>
+          
 
             <div className='response-text'>
   {loading ? (
@@ -117,7 +115,7 @@ function Structure() {
     messages
       .filter(msg => msg.role === 'assistant') // Filter to include only assistant messages
       .map((msg, index) => (
-        <p key={index} className='formatted-message' dangerouslySetInnerHTML={{ __html: msg.content.split('JSONdata')[0].trim() }}></p>
+        <p key={index} className='formatted-message' dangerouslySetInnerHTML={{ __html: msg.content.split('JSONdata')[0].trim().split("Source file: countries.csv")[0].trim() }}></p>
       ))
   )}
 </div>
