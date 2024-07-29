@@ -16,10 +16,10 @@ function Structure() {
       .then((response) => response.json())
       .then((data) => {
         setCountries(data);
-       
-        setTimeout(()=>{
+         setTimeout(()=>{
           handleSendMessage()
-        },3000)
+          // console.log("test fetch")
+         })
         
       })
       .catch((error) => {
@@ -110,7 +110,7 @@ function Structure() {
   {loading ? (
     <LoadingPage />
   ) : initialText ? (
-    <p>Country CSV Data</p>
+    <p></p>
   ) : (
     messages
       .filter(msg => msg.role === 'assistant') // Filter to include only assistant messages
