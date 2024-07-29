@@ -19,7 +19,7 @@ function Structure() {
          setTimeout(()=>{
           handleSendMessage()
           // console.log("test fetch")
-         })
+         },3000)
         
       })
       .catch((error) => {
