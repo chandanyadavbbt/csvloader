@@ -97,5 +97,9 @@
 .response-text p{
   font-size: 24px;
 }
+.formatted-message {
+  white-space: pre-wrap; /* Preserve whitespace and line breaks */
+}
+
 
   

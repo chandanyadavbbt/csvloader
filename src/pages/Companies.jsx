@@ -102,7 +102,7 @@ function Companies() {
            <LoadingPage/>
           ) : (
             messages.map((msg, index) => (
-              <p key={index} className={msg.role}>{msg.content.split('JSONdata')[0].trim()}</p>
+              <p key={index} className="formatted-message">{msg.content.split('JSONdata')[0].trim()}</p>
             ))
           )}
         </div>

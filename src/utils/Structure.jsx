@@ -54,9 +54,11 @@ function Structure() {
 
       const data = await response.json();
       const assistantMessage = data.choices[0]?.message?.content || "No response from API";
-
+      
       // Refined regular expression to avoid breaking on "out of 10." or similar cases
-      const formattedMessage = assistantMessage.replace(/(\d+\.\s)(?=[A-Z])/g, '<br />$1').trim();
+      // const formattedMessage = assistantMessage.replace(/(\d+\.\s)(?=[A-Z])/g, '<br />$1').trim();
+      const formattedMessage = assistantMessage;
+      console.log(formattedMessage)
 
       setMessages([...messages, { role: 'user', content: message }, { role: 'assistant', content: formattedMessage }]);
       setLoading(false);
@@ -115,7 +117,7 @@ function Structure() {
     messages
       .filter(msg => msg.role === 'assistant') // Filter to include only assistant messages
       .map((msg, index) => (
-        <p key={index} className={msg.role} dangerouslySetInnerHTML={{ __html: msg.content.split('JSONdata')[0].trim() }}></p>
+        <p key={index} className='formatted-message' dangerouslySetInnerHTML={{ __html: msg.content.split('JSONdata')[0].trim() }}></p>
       ))
   )}
 </div>
