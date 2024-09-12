@@ -15,9 +15,9 @@ app.get("/test", (req, res) => {
 });
 
 // this is countires 
-app.get("/countries", (req, res) => {
+app.get("/healthcare", (req, res) => {
   const results = [];
-  const csvFilePath = path.join(__dirname, "countries.csv");
+  const csvFilePath = path.join(__dirname, "healthcare.csv");
 
   fs.createReadStream(csvFilePath)
     .pipe(csv())

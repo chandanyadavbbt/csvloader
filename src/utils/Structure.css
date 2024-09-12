@@ -1,4 +1,4 @@
-/* Structure.css */
+/* Structure.css
 
 .container {
     display: flex;
@@ -13,7 +13,7 @@
     border-collapse: collapse;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     background-color: #fff;
-    margin-left: 2%; /* This centers the table horizontally */
+    margin-left: 2%; 
     
   }
   
@@ -56,7 +56,7 @@
     border-radius: 12px;
     font-weight: 600;
   }
-  /* Structure.css or another CSS file */
+ 
 
 .modern-button {
   display: inline-block;
@@ -64,7 +64,7 @@
   font-size: 16px;
   font-weight: 600;
   color: #fff;
-  background-color: #007bff; /* Primary color */
+  background-color: #007bff;
   border: none;
   border-radius: 4px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -74,7 +74,7 @@
 }
 
 .modern-button:hover {
-  background-color: #0056b3; /* Darker shade for hover effect */
+  background-color: #0056b3; 
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 }
 
@@ -84,7 +84,7 @@
 }
 
 .modern-button:active {
-  background-color: #004085; /* Even darker shade for active state */
+  background-color: #004085; 
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 .response-text{
@@ -98,9 +98,174 @@
   font-size: 24px;
 }
 .formatted-message {
-  white-space: pre-wrap; /* Preserve whitespace and line breaks */
+  white-space: pre-wrap; 
   font-size: 20px;
 }
 
 
-  
+   */
+
+
+
+   /* Structure.css */
+
+/* body {
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  max-width: 100vw;
+  margin: auto;
+}
+
+.modern-table {
+  width: 60%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.modern-table th, .modern-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.modern-table th {
+  background: #004d99;
+  color: white;
+}
+
+.modern-table tr:hover {
+  background: #f1f1f1;
+}
+
+.container-right {
+  width: 35%;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.response-text {
+  padding: 10px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  max-height: 700px;
+  overflow-y: auto;
+}
+
+.formatted-message {
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+  background: #e6f7ff;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+} */
+
+
+
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  background: radial-gradient(circle, #f0f0f0, #c0c0c0);
+  height: 100vh;
+  font-family: 'Poppins', sans-serif;
+}
+
+.modern-table {
+  width: 65%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+.modern-table thead {
+  background-color: #4a90e2;
+  color: white;
+}
+
+.modern-table th,
+.modern-table td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.modern-table tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+.container-right {
+  width: 30%;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  animation: slideIn 0.5s ease-in-out;
+}
+
+.response-text {
+  font-size: 16px;
+  color: #333;
+}
+
+.formatted-message {
+  background-color: #f7f7f7;
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
